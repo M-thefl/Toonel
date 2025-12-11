@@ -1,0 +1,13 @@
+{
+  "port": "3000",
+  "name": "Toonel Bot",
+  "description": "Generate secure and fast V2Ray configs with just a few commands. Simple, fast, and powerful.",
+  "invite": "https://discord.com/oauth2/authorize?client_id=1352713302085468191",
+  "support": "https://toonel.ir/",
+  "pfp": "https://cdn.discordapp.com/avatars/1352713302085468191/8895fe4e5fe3c1e577a0bdaefa13f2af.png?size=1024",
+  "discordWebhook": "",
+  "avatarUrl": "https://cdn.discordapp.com/avatars/1352713302085468191/8895fe4e5fe3c1e577a0bdaefa13f2af.png?size=1024",
+  "webhookName": "Toonel"
+
+
+}

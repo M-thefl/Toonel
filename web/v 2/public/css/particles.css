@@ -1,0 +1,274 @@
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse at bottom, #0C0B1D 0%, #1A1A2E 100%);
+    overflow: hidden;
+}
+
+#floating-elements {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+    mix-blend-mode: screen;
+    filter: blur(60px);
+    transform-origin: center;
+    box-shadow: 0 0 80px rgba(255, 255, 255, 0.1);
+    transition: transform 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    will-change: transform, opacity, filter;
+    background: radial-gradient(circle at center, var(--orb-color-1), var(--orb-color-2));
+}
+
+.floating-orb.purple {
+    --orb-color-1: #9b5de5;
+    --orb-color-2: #5f27cd;
+    width: clamp(200px, 30vw, 400px);
+    height: clamp(200px, 30vw, 400px);
+    top: 15%;
+    left: 10%;
+    animation: 
+        float-purple 25s infinite ease-in-out alternate, 
+        pulse 10s infinite ease-in-out,
+        orb-glow-purple 8s infinite alternate;
+}
+
+.floating-orb.pink {
+    --orb-color-1: #f15bb5;
+    --orb-color-2: #c9184a;
+    width: clamp(180px, 25vw, 350px);
+    height: clamp(180px, 25vw, 350px);
+    top: 60%;
+    left: 70%;
+    animation: 
+        float-pink 23s infinite ease-in-out alternate, 
+        pulse 12s infinite ease-in-out,
+        orb-glow-pink 7s infinite alternate;
+}
+
+.floating-orb.blue {
+    --orb-color-1: #00bbf9;
+    --orb-color-2: #3a86ff;
+    width: clamp(220px, 28vw, 380px);
+    height: clamp(220px, 28vw, 380px);
+    top: 75%;
+    left: 25%;
+    animation: 
+        float-blue 27s infinite ease-in-out alternate, 
+        pulse 11s infinite ease-in-out,
+        orb-glow-blue 9s infinite alternate;
+}
+
+.floating-orb.teal {
+    --orb-color-1: #00f5d4;
+    --orb-color-2: #00b4d8;
+    width: clamp(150px, 20vw, 300px);
+    height: clamp(150px, 20vw, 300px);
+    top: 25%;
+    left: 80%;
+    animation: 
+        float-teal 24s infinite ease-in-out alternate, 
+        pulse 13s infinite ease-in-out,
+        orb-glow-teal 6s infinite alternate;
+    display: none; /* Optional - can be enabled for more complexity */
+}
+
+/* Enhanced Animation Keyframes */
+@keyframes float-purple {
+    0%, 100% {
+        transform: 
+            translate(0, 0) 
+            rotate3d(0.2, 0.5, 0.1, 0deg)
+            scale(0.9);
+    }
+    25% {
+        transform: 
+            translate(10vw, 5vh) 
+            rotate3d(0.5, 0.8, 0.2, 90deg)
+            scale(1.05);
+    }
+    50% {
+        transform: 
+            translate(5vw, 12vh) 
+            rotate3d(0.8, 0.3, 0.5, 180deg)
+            scale(0.95);
+    }
+    75% {
+        transform: 
+            translate(-8vw, 7vh) 
+            rotate3d(0.3, 0.7, 0.4, 270deg)
+            scale(1.1);
+    }
+}
+
+@keyframes float-pink {
+    0%, 100% {
+        transform: 
+            translate(0, 0) 
+            rotate3d(0.4, 0.1, 0.3, 0deg)
+            scale(0.95);
+    }
+    33% {
+        transform: 
+            translate(-12vw, -8vh) 
+            rotate3d(0.7, 0.5, 0.2, 120deg)
+            scale(1.1);
+    }
+    66% {
+        transform: 
+            translate(15vw, 10vh) 
+            rotate3d(0.2, 0.9, 0.4, 240deg)
+            scale(0.85);
+    }
+}
+
+@keyframes float-blue {
+    0% {
+        transform: 
+            translate(0, 0) 
+            rotate3d(0.1, 0.2, 0.5, 0deg)
+            scale(1);
+    }
+    20% {
+        transform: 
+            translate(8vw, 15vh) 
+            rotate3d(0.6, 0.4, 0.8, 72deg)
+            scale(0.9);
+    }
+    40% {
+        transform: 
+            translate(-10vw, 5vh) 
+            rotate3d(0.3, 0.7, 0.1, 144deg)
+            scale(1.15);
+    }
+    60% {
+        transform: 
+            translate(5vw, -12vh) 
+            rotate3d(0.8, 0.2, 0.5, 216deg)
+            scale(0.8);
+    }
+    80% {
+        transform: 
+            translate(-15vw, 8vh) 
+            rotate3d(0.4, 0.6, 0.3, 288deg)
+            scale(1.05);
+    }
+    100% {
+        transform: 
+            translate(0, 0) 
+            rotate3d(0.1, 0.2, 0.5, 360deg)
+            scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+        filter: blur(60px);
+    }
+    50% {
+        opacity: 0.6;
+        filter: blur(90px);
+    }
+}
+
+/* New Glow Effects */
+@keyframes orb-glow-purple {
+    0%, 100% {
+        box-shadow: 
+            0 0 80px rgba(155, 93, 229, 0.3),
+            0 0 120px rgba(95, 39, 205, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 120px rgba(155, 93, 229, 0.5),
+            0 0 180px rgba(95, 39, 205, 0.3);
+    }
+}
+
+@keyframes orb-glow-pink {
+    0%, 100% {
+        box-shadow: 
+            0 0 70px rgba(241, 91, 181, 0.3),
+            0 0 110px rgba(201, 24, 74, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 110px rgba(241, 91, 181, 0.5),
+            0 0 160px rgba(201, 24, 74, 0.3);
+    }
+}
+
+@keyframes orb-glow-blue {
+    0%, 100% {
+        box-shadow: 
+            0 0 90px rgba(0, 187, 249, 0.3),
+            0 0 130px rgba(58, 134, 255, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 130px rgba(0, 187, 249, 0.5),
+            0 0 190px rgba(58, 134, 255, 0.3);
+    }
+}
+
+@keyframes orb-glow-teal {
+    0%, 100% {
+        box-shadow: 
+            0 0 60px rgba(0, 245, 212, 0.3),
+            0 0 100px rgba(0, 180, 216, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 0 100px rgba(0, 245, 212, 0.5),
+            0 0 150px rgba(0, 180, 216, 0.3);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .floating-orb {
+        filter: blur(40px);
+    }
+    
+    @keyframes pulse {
+        0%, 100% {
+            filter: blur(40px);
+        }
+        50% {
+            filter: blur(60px);
+        }
+    }
+    
+    .floating-orb.purple,
+    .floating-orb.pink,
+    .floating-orb.blue {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .floating-orb.teal {
+        display: none;
+    }
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+    .floating-orb {
+        animation: none !important;
+        opacity: 0.3;
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "toonel",
+  "version": "1.0.0",
+  "description": "Boobs",
+  "main": "toonel.js",
+  "scripts": {
+    "start": "node toonel.js & node Dashboard/app.js",
+    "dev": "nodemon toonel.js & node Dashboard/app.js"
+  },
+  "dependencies": {
+    "@maniwrld/marzjs": "^1.0.9",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "discord-oauth2": "^2.12.1",
+    "discord.js": "^14.18.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "moment-duration-format": "^2.3.2",
+    "node-fetch": "^3.3.2",
+    "playwright": "^1.51.1",
+    "pm2": "^6.0.5",
+    "shortid": "^2.2.17",
+    "sqlite3": "^5.1.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Status</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            text-align: center;
+        }
+
+        header {
+            padding: 20px;
+            background: linear-gradient(135deg, #1f2937, #0d1117);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #58a6ff;
+        }
+
+        .status-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .status-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 15px;
+            width: 250px;
+            transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .status-card:nth-child(1) { animation-delay: 0.2s; }
+        .status-card:nth-child(2) { animation-delay: 0.4s; }
+        .status-card:nth-child(3) { animation-delay: 0.6s; }
+        .status-card:nth-child(4) { animation-delay: 0.8s; }
+        .status-card:nth-child(5) { animation-delay: 1s; }
+        .status-card:nth-child(6) { animation-delay: 1.2s; }
+        .status-card:nth-child(7) { animation-delay: 1.4s; }
+        .status-card:nth-child(8) { animation-delay: 1.6s; }
+        .status-card:nth-child(9) { animation-delay: 1.8s; }
+        .status-card:nth-child(10) { animation-delay: 2s; }
+
+        .status-card:hover {
+            transform: scale(1.05);
+            border-color: #58a6ff;
+        }
+
+        .status-card h2 {
+            color: #58a6ff;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .status-card p {
+            font-size: 1rem;
+            color: #8b949e;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background: #161b22;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: #58a6ff;
+            background: transparent;
+            border: 2px solid #58a6ff;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .home-btn:hover {
+            background: #58a6ff;
+            color: #0d1117;
+        }
+
+        .home-btn ion-icon {
+            margin-left: 10px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .home-btn:hover ion-icon {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bot Status</h1>
+        <p>Live status and performance of the bot</p>
+    </header>
+
+    <main>
+        <section class="status-container">
+            <div class="status-card">
+                <h2>🤖 Bot Name</h2>
+                <p><%= bot.user.username %></p>
+            </div>
+            <div class="status-card">
+                <h2>📌 Version</h2>
+                <p>1.0.0</p>
+            </div>
+            <div class="status-card">
+                <h2>🏓 WebSocket Ping</h2>
+                <p><%= bot.ws.ping %>ms</p>
+            </div>
+            <div class="status-card">
+                <h2>📡 Servers</h2>
+                <p><%= totalServers.toLocaleString() %></p>
+            </div>
+            <div class="status-card">
+                <h2>👥 Total Users</h2>
+                <p><%= totalUsers.toLocaleString() %></p>
+            </div>
+            <div class="status-card">
+                <h2>💬 Channels</h2>
+                <p><%= totalChannels.toLocaleString() %></p>
+            </div>
+            <div class="status-card">
+                <h2>⏳ Uptime</h2>
+                <p><%= uptime %></p>
+            </div>
+            <div class="status-card">
+                <h2>💾 Memory Usage</h2>
+                <p><%= memoryUsage %> MB</p>
+            </div>
+            <div class="status-card">
+                <h2>🖥️ CPU Load</h2>
+                <p><%= cpuUsage %>%</p>
+            </div>
+            <div class="status-card">
+                <h2>📊 Total Commands Used</h2>
+                <p><%= commandCount.toLocaleString() %></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="/" class="home-btn">
+            Back to Home
+            <ion-icon name="arrow-forward"></ion-icon>
+        </a>
+    </footer>
+
+    <script type="module">
+        import { defineCustomElements } from 'https://unpkg.com/@ionic/core/loader/index.esm.js';
+        defineCustomElements(window);
+    </script>
+</body>
+</html>

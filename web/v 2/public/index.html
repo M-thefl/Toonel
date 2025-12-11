@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toonel - Premium V2Ray Discord Bot</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/particles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div id="floating-elements"></div>
+    
+    <div class="luxury-container">
+        <header class="premium-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24">
+                        <path fill="#A569BD" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M15.6,8.29C16.57,8.29 17.36,9.06 17.36,10C17.36,10.95 16.57,11.71 15.6,11.71C14.63,11.71 13.84,10.95 13.84,10C13.84,9.06 14.63,8.29 15.6,8.29M8.4,8.29C9.37,8.29 10.16,9.06 10.16,10C10.16,10.95 9.37,11.71 8.4,11.71C7.43,11.71 6.64,10.95 6.64,10C6.64,9.06 7.43,8.29 8.4,8.29M12,18C9.37,18 7.03,16.92 5.26,15H18.74C16.97,16.92 14.63,18 12,18Z"/>
+                    </svg>
+                    <span class="logo-text">TOONEL</span>
+                    <span class="premium-badge">PREMIUM</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+                        <li><a href="#commands"><i class="fas fa-terminal"></i> Commands</a></li>
+                        <li><a href="#premium"><i class="fas fa-crown"></i> Premium</a></li>
+                        <li><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="#tutorials"><i class="fas fa-graduation-cap"></i> Tutorials</a></li>
+                        <li><a href="https://discord.gg/t9Fj2UDpJH"><i class="fas fa-headset"></i> Support</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="nav-actions">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1352713302085468191" class="btn btn-gradient">
+                        <i class="fas fa-plus"></i> Invite Bot
+                    </a>
+                    <button class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="luxury-hero">
+            <div class="hero-content">
+                <div class="badge-container">
+                    <span class="new-badge">NEW</span>
+                    <span class="version-badge">v2.0.0</span>
+                    <span class="beta-badge">BETA</span>
+                </div>
+                <h1>
+                    <span class="gradient-text">Advanced V2Ray</span>
+                    <span>Configuration Bot</span>
+                </h1>
+                <p class="hero-description">
+                    Toonel provides premium V2Ray configurations directly through Discord with advanced features and security.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#dashboard" class="btn btn-gradient btn-xl">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                    <a href="#tutorials" class="btn btn-outline btn-xl">
+                        <i class="fas fa-play-circle"></i> Watch Tutorial
+                    </a>
+                    <a href="#premium" class="btn btn-premium btn-xl">
+                        <i class="fas fa-crown"></i> Go Premium
+                    </a>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-value">500+</div>
+                        <div class="stat-label">Servers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value online-status">24/7</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">30+</div>
+                        <div class="stat-label">Commands</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1K+</div>
+                        <div class="stat-label">Users</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div id="interactive-bot"></div>
+                <div class="visual-effects">
+                    <div class="pulse-effect"></div>
+                    <div class="ring-effect"></div>
+                    <div class="connection-dots"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="premium-features">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-decorator"></span>
+                    Powerful Features
+                    <span class="title-decorator"></span>
+                </h2>
+                <p class="section-subtitle">Everything you need for advanced V2Ray configuration</p>
+            </div>
+            
+            <div class="features-tabs">
+                <div class="tab active" data-tab="vpn">
+                    <i class="fas fa-network-wired"></i> VPN Configs
+                </div>
+                <div class="tab" data-tab="security">
+                    <i class="fas fa-shield-alt"></i> Security
+                </div>
+                <div class="tab" data-tab="automation">
+                    <i class="fas fa-robot"></i> Automation
+                </div>
+                <div class="tab" data-tab="management">
+                    <i class="fas fa-tools"></i> Management
+                </div>
+                <div class="tab" data-tab="premium">
+                    <i class="fas fa-crown"></i> Premium
+                </div>
+            </div>
+            
+            <div class="features-content">
+                <!-- Content will be loaded via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Command Explorer Section -->
+        <section id="commands" class="command-explorer">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-decorator"></span>
+                    Command Explorer
+                    <span class="title-decorator"></span>
+                </h2>
+                <p class="section-subtitle">All available commands at your fingertips</p>
+            </div>
+            
+            <div class="command-search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="command-search" placeholder="Search commands...">
+                    <div class="search-filters">
+                        <select id="command-category">
+                            <option value="all">All Categories</option>
+                            <option value="vpn">VPN Config</option>
+                            <option value="security">Security</option>
+                            <option value="utility">Utility</option>
+                            <option value="premium">Premium</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="commands-grid">
+                <!-- Commands will be loaded via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Premium Comparison Section -->
+        <section id="premium" class="premium-comparison">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-decorator"></span>
+                    Premium Plans
+                    <span class="title-decorator"></span>
+                </h2>
+                <p class="section-subtitle">Unlock the full potential of Toonel</p>
+            </div>
+            
+            <div class="pricing-tiers">
+                <div class="tier-card basic">
+                    <div class="tier-header">
+                        <h3>Basic</h3>
+                        <div class="price">Free</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> Basic V2Ray Configs</li>
+                        <li><i class="fas fa-check"></i> 3 Server Locations</li>
+                        <li><i class="fas fa-check"></i> Standard Support</li>
+                        <li><i class="fas fa-times"></i> Premium Locations</li>
+                        <li><i class="fas fa-times"></i> Automated Updates</li>
+                        <li><i class="fas fa-times"></i> Priority Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Current Plan</a>
+                </div>
+                
+                <div class="tier-card premium featured">
+                    <div class="tier-badge">Most Popular</div>
+                    <div class="tier-header">
+                        <h3>Premium</h3>
+                        <div class="price">$4.99<span>/month</span></div>
+                    </div>
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> All Basic Features</li>
+                        <li><i class="fas fa-check"></i> 15+ Server Locations</li>
+                        <li><i class="fas fa-check"></i> Premium Configurations</li>
+                        <li><i class="fas fa-check"></i> Automated Updates</li>
+                        <li><i class="fas fa-check"></i> Priority Support</li>
+                        <li><i class="fas fa-check"></i> Custom Configs</li>
+                    </ul>
+                    <a href="#" class="btn btn-gradient">Upgrade Now</a>
+                </div>
+                
+                <div class="tier-card enterprise">
+                    <div class="tier-header">
+                        <h3>Enterprise</h3>
+                        <div class="price">$9.99<span>/month</span></div>
+                    </div>
+                    <ul class="tier-features">
+                        <li><i class="fas fa-check"></i> All Premium Features</li>
+                        <li><i class="fas fa-check"></i> Unlimited Locations</li>
+                        <li><i class="fas fa-check"></i> Dedicated Server</li>
+                        <li><i class="fas fa-check"></i> 24/7 Support</li>
+                        <li><i class="fas fa-check"></i> Custom Integration</li>
+                        <li><i class="fas fa-check"></i> Team Management</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Contact Sales</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Preview Section -->
+        <section id="dashboard" class="dashboard-preview">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-decorator"></span>
+                    Dashboard Preview
+                    <span class="title-decorator"></span>
+                </h2>
+                <p class="section-subtitle">Manage your configurations with ease</p>
+            </div>
+            
+            <div class="dashboard-container">
+                <div class="dashboard-sidebar">
+                    <div class="server-status">
+                        <h4>Server Status</h4>
+                        <div class="status-indicator online"></div>
+                        <span>All Systems Operational</span>
+                    </div>
+                    <nav class="dashboard-nav">
+                        <ul>
+                            <li class="active"><a href="#"><i class="fas fa-home"></i> Overview</a></li>
+                            <li><a href="#"><i class="fas fa-server"></i> Configurations</a></li>
+                            <li><a href="#"><i class="fas fa-shield-alt"></i> Security</a></li>
+                            <li><a href="#"><i class="fas fa-users"></i> Users</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="dashboard-main">
+                    <div class="dashboard-card config-stats">
+                        <h4>Active Configurations</h4>
+                        <div class="stat-value">24</div>
+                        <div class="stat-graph"></div>
+                    </div>
+                    <div class="dashboard-card traffic-stats">
+                        <h4>Traffic Usage</h4>
+                        <div class="stat-value">3.2 TB</div>
+                        <div class="stat-graph"></div>
+                    </div>
+                    <div class="dashboard-card server-list">
+                        <h4>Available Servers</h4>
+                        <div class="server-item">
+                            <span class="server-name">US-East-1</span>
+                            <span class="server-status online"></span>
+                            <span class="server-load">35%</span>
+                        </div>
+                        <div class="server-item">
+                            <span class="server-name">EU-Central-1</span>
+                            <span class="server-status online"></span>
+                            <span class="server-load">42%</span>
+                        </div>
+                        <div class="server-item">
+                            <span class="server-name">Asia-SE-1</span>
+                            <span class="server-status online"></span>
+                            <span class="server-load">18%</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-card quick-actions">
+                        <h4>Quick Actions</h4>
+                        <button class="btn btn-sm btn-gradient"><i class="fas fa-plus"></i> New Config</button>
+                        <button class="btn btn-sm btn-outline"><i class="fas fa-sync"></i> Refresh All</button>
+                        <button class="btn btn-sm btn-outline"><i class="fas fa-download"></i> Export</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutorials Section -->
+        <section id="tutorials" class="tutorials-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-decorator"></span>
+                    Video Tutorials
+                    <span class="title-decorator"></span>
+                </h2>
+                <p class="section-subtitle">Learn how to get the most out of Toonel</p>
+            </div>
+            
+            <div class="tutorials-grid">
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail">
+                        <img src="https://i.pinimg.com/originals/e1/2e/67/e12e671873b5a7d64849d46375d5300d.gif" alt="Getting Started">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                    <h4>Getting Started with Toonel</h4>
+                    <p class="tutorial-duration">5:32 min</p>
+                </div>
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail">
+                        <img src="https://i.pinimg.com/originals/4f/dc/19/4fdc19b68eac2c71203d89e1ec2efe70.gif" alt="Advanced Config">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                    <h4>Advanced Configuration Guide</h4>
+                    <p class="tutorial-duration">12:15 min</p>
+                </div>
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail">
+                        <img src="https://i.pinimg.com/originals/af/fb/ad/affbadfe492f696f184f9cb10eb148cf.gif" alt="Troubleshooting">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                    <h4>Troubleshooting Common Issues</h4>
+                    <p class="tutorial-duration">8:47 min</p>
+                </div>
+            </div>
+            
+            <div class="section-footer">
+                <a href="#" class="btn btn-outline btn-xl">
+                    <i class="fas fa-book"></i> View All Tutorials
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-decorator"></span>
+                    Frequently Asked Questions
+                    <span class="title-decorator"></span>
+                </h2>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How do I generate my first V2Ray configuration?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To generate your first configuration, simply use the command <code>/config create</code> in your Discord server where Toonel is installed. The bot will guide you through the process with interactive prompts.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What's the difference between free and premium plans?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our free plan offers basic V2Ray configurations with limited server locations. Premium plans unlock advanced configurations, more server locations, priority support, and automated updates.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is my data secure with Toonel?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, security is our top priority. All configurations are generated with strong encryption and we don't store any logs of your activity. Premium plans offer additional security features.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I use Toonel for my entire team?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Our Enterprise plan is designed for teams with features like team management, centralized billing, and dedicated support. Contact our sales team for custom solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-container">
+                <h2>Ready to experience premium V2Ray configurations?</h2>
+                <p>Join thousands of users who trust Toonel for their secure connection needs.</p>
+                <div class="cta-actions">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1352713302085468191" class="btn btn-gradient btn-xl">
+                        <i class="fas fa-plus"></i> Invite Toonel
+                    </a>
+                    <a href="#premium" class="btn btn-outline btn-xl">
+                        <i class="fas fa-crown"></i> Go Premium
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="premium-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24">
+                            <path fill="#A569BD" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M15.6,8.29C16.57,8.29 17.36,9.06 17.36,10C17.36,10.95 16.57,11.71 15.6,11.71C14.63,11.71 13.84,10.95 13.84,10C13.84,9.06 14.63,8.29 15.6,8.29M8.4,8.29C9.37,8.29 10.16,9.06 10.16,10C10.16,10.95 9.37,11.71 8.4,11.71C7.43,11.71 6.64,10.95 6.64,10C6.64,9.06 7.43,8.29 8.4,8.29M12,18C9.37,18 7.03,16.92 5.26,15H18.74C16.97,16.92 14.63,18 12,18Z"/>
+                        </svg>
+                        <span class="logo-text">TOONEL</span>
+                    </div>
+                    <p class="footer-description">Advanced V2Ray configuration bot for Discord with premium features and top-notch security.</p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/6Sw4x6k3"><i class="fab fa-discord"></i></a>
+                        <a href="https://x.com/Mahbodfl0"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/M-thefl"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="links-column">
+                        <h5>Product</h5>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#commands">Commands</a></li>
+                            <li><a href="#premium">Pricing</a></li>
+                            <li><a href="#tutorials">Tutorials</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h5>Resources</h5>
+                        <ul>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">API Reference</a></li>
+                            <li><a href="#">Status</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h5>Company</h5>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Toonel. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/three.min.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/bot-model.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

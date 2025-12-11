@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <link
+    rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command List</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        header {
+            padding: 20px;
+            background: linear-gradient(135deg, #1f2937, #0d1117);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #58a6ff;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #8b949e;
+        }
+
+        /* Commands Section */
+        .commands {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .command {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 15px;
+            width: 250px;
+            transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .command:nth-child(1) { animation-delay: 0.2s; }
+        .command:nth-child(2) { animation-delay: 0.4s; }
+        .command:nth-child(3) { animation-delay: 0.6s; }
+        .command:nth-child(4) { animation-delay: 0.8s; }
+        .command:nth-child(5) { animation-delay: 1s; }
+        .command:nth-child(6) { animation-delay: 1.2s; }
+
+        .command:hover {
+            transform: scale(1.05);
+            border-color: #58a6ff;
+        }
+
+        .command h2 {
+            color: #58a6ff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .command p {
+            font-size: 1rem;
+            color: #8b949e;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background: #161b22;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: #58a6ff;
+            background: transparent;
+            border: 2px solid #58a6ff;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .home-btn:hover {
+            background: #58a6ff;
+            color: #0d1117;
+        }
+
+        .home-btn ion-icon {
+            margin-left: 10px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .home-btn:hover ion-icon {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Available Commands</h1>
+        <p>Explore the commands below to interact with the system:</p>
+        <a href="<%= invite %>" class="btn btn-primary">Invite Bot</a>
+
+    </header>
+
+    <main>
+        <section class="commands">
+            <div class="command">
+                <h2>/help</h2>
+                <p>Get a list of all available commands.</p>
+            </div>
+            <div class="command">
+                <h2>/botinfo</h2>
+                <p>Displays detailed bot information, system stats, and command usage.</p>
+            </div>
+            <div class="command">
+                <h2>/createconfig</h2>
+                <p>Generates a new VPN config for a user.</p>
+            </div>
+            <div class="command">
+                <h2>/ipinfo</h2>
+                <p>check ip.</p>
+            </div>
+            <div class="command">
+                <h2>/checkport</h2>
+                <p>check port.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="/" class="home-btn">
+            Back to Home
+            <ion-icon name="arrow-forward"></ion-icon>
+        </a>
+    </footer>
+
+
+    <script type="module">
+        import { defineCustomElements } from 'https://unpkg.com/@ionic/core/loader/index.esm.js';
+        defineCustomElements(window);
+    </script>
+</body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toonel - Premium Discord Bot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: #0a0818;
+            color: #fff;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(10,8,24,0.2) 0%, rgba(10,8,24,0.8) 70%);
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: linear-gradient(45deg, #7b2ff7, #f72fd0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #7b2ff7, #f72fd0);
+            transition: 0.3s;
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #7b2ff7, #f72fd0);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(123, 47, 247, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(123, 47, 247, 0.4);
+        }
+
+        .hero {
+            padding: 8rem 5% 5rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #7b2ff7, #f72fd0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .features {
+            padding: 6rem 5%;
+            background: rgba(15, 12, 41, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            margin: 5rem auto;
+            max-width: 1200px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            bottom: -10px;
+            left: 20%;
+            background: linear-gradient(45deg, #7b2ff7, #f72fd0);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(123, 47, 247, 0.1), rgba(247, 47, 208, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(123, 47, 247, 0.2);
+            border-color: rgba(123, 47, 247, 0.3);
+        }
+
+        .feature-card:hover:before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #7b2ff7, #f72fd0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-card p {
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .commands {
+            padding: 6rem 5%;
+            background: rgba(15, 12, 41, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            margin: 5rem auto;
+            max-width: 1200px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .command-search {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            position: relative;
+        }
+
+        .command-search input {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .command-search input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 5px 20px rgba(123, 47, 247, 0.2);
+        }
+
+        .command-search::after {
+            content: '🔍';
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+
+        .commands-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .commands-table th {
+            background: linear-gradient(45deg, #7b2ff7, #f72fd0);
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+            color: white;
+        }
+
+        .commands-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .commands-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .commands-table tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .command-name {
+            color: #c792ff;
+            font-weight: 600;
+        }
+
+        footer {
+            padding: 4rem 5%;
+            text-align: center;
+            background: rgba(10, 8, 24, 0.8);
+            backdrop-filter: blur(10px);
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: #c792ff;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(45deg, #7b2ff7, #f72fd0);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(123, 47, 247, 0.3);
+        }
+
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero {
+                padding: 6rem 5% 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .features, .commands {
+                padding: 4rem 5%;
+                margin: 3rem auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-card {
+                padding: 1.8rem;
+            }
+            
+            .command-search input {
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div class="gradient-overlay"></div>
+    
+    <div class="content">
+        <header>
+            <a href="#" class="logo">Toonel<span>Bot</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#commands">Commands</a></li>
+                    <li><a href="#premium">Premium</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </nav>
+            <button class="cta-button">Invite Toonel</button>
+        </header>
+
+        <section class="hero">
+            <h1 class="floating">Your Ultimate Discord Experience</h1>
+            <p>Toonel brings next-level features to your Discord server with stunning visuals, powerful tools, and seamless integration.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <button class="cta-button" style="padding: 0.9rem 2.2rem; font-size: 1.1rem;">Invite Now</button>
+                <button class="cta-button" style="padding: 0.9rem 2.2rem; font-size: 1.1rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); box-shadow: none;">Learn More</button>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <h2 class="section-title">Premium Features</h2>
+            <div class="features-grid">
+                <div class="feature-card floating" style="animation-delay: 0s;">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Crystal Clear Audio</h3>
+                    <p>Experience studio-quality music playback with our advanced audio engine that supports all major platforms.</p>
+                </div>
+                <div class="feature-card floating" style="animation-delay: 0.2s;">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Chat & Image Generation</h3>
+                    <p>Interact with cutting-edge AI that can chat, create images, and assist your community members.</p>
+                </div>
+                <div class="feature-card floating" style="animation-delay: 0.4s;">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Advanced Protection</h3>
+                    <p>Auto-moderation, anti-raid systems, and customizable filters keep your server safe 24/7.</p>
+                </div>
+                <div class="feature-card floating" style="animation-delay: 0.6s;">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Interactive Games</h3>
+                    <p>Engage your community with multiplayer games, trivia, and economy systems.</p>
+                </div>
+                <div class="feature-card floating" style="animation-delay: 0.8s;">
+                    <div class="feature-icon">📊</div>
+                    <h3>Detailed Analytics</h3>
+                    <p>Track server growth, member activity, and bot performance with beautiful dashboards.</p>
+                </div>
+                <div class="feature-card floating" style="animation-delay: 1s;">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Complete Customization</h3>
+                    <p>Tailor every aspect of Toonel to match your server's theme and requirements.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="commands" id="commands">
+            <h2 class="section-title">Command Reference</h2>
+            <div class="command-search">
+                <input type="text" placeholder="Search 150+ commands...">
+            </div>
+            <table class="commands-table">
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                        <th>Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="command-name">/play</td>
+                        <td>Play music from various platforms</td>
+                        <td>/play [song/URL]</td>
+                    </tr>
+                    <tr>
+                        <td class="command-name">/playlist create</td>
+                        <td>Create custom playlists</td>
+                        <td>/playlist create [name]</td>
+                    </tr>
+                    <tr>
+                        <td class="command-name">/ai chat</td>
+                        <td>Chat with advanced AI</td>
+                        <td>/ai chat [message]</td>
+                    </tr>
+                    <tr>
+                        <td class="command-name">/ai draw</td>
+                        <td>Generate AI artwork</td>
+                        <td>/ai draw [prompt]</td>
+                    </tr>
+                    <tr>
+                        <td class="command-name">/mod warn</td>
+                        <td>Warn a server member</td>
+                        <td>/mod warn [user] [reason]</td>
+                    </tr>
+                    <tr>
+                        <td class="command-name">/server stats</td>
+                        <td>View server analytics</td>
+                        <td>/server stats</td>
+                    </tr>
+                    <tr>
+                        <td class="command-name">/game trivia</td>
+                        <td>Start a trivia game</td>
+                        <td>/game trivia [category]</td>
+                    </tr>
+                    <tr>
+                        <td class="command-name">/economy balance</td>
+                        <td>Check your currency</td>
+                        <td>/economy balance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#features">Features</a>
+                <a href="#commands">Commands</a>
+                <a href="#">Documentation</a>
+                <a href="#">Premium</a>
+                <a href="#">Support</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="social-links">
+                <a href="#">📱</a>
+                <a href="#">🐦</a>
+                <a href="#">📘</a>
+                <a href="#">🎮</a>
+                <a href="#">📸</a>
+            </div>
+            <p class="copyright">© 2023 Toonel Bot. All rights reserved.<br>Not affiliated with Discord Inc.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Enhanced 3D Scene with Floating Islands
+        const container = document.getElementById('canvas-container');
+        
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 10;
+        
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: true,
+            alpha: true
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        // Add fog for depth
+        scene.fog = new THREE.FogExp2(0x0a0818, 0.02);
+
+        // Galaxy background
+        const starGeometry = new THREE.BufferGeometry();
+        const starMaterial = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.05,
+            transparent: true,
+            opacity: 0.8
+        });
+
+        const starVertices = [];
+        for (let i = 0; i < 5000; i++) {
+            const x = (Math.random() - 0.5) * 2000;
+            const y = (Math.random() - 0.5) * 2000;
+            const z = (Math.random() - 0.5) * 2000;
+            starVertices.push(x, y, z);
+        }
+
+        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+
+        // Floating islands
+        const islands = [];
+        const islandGeometry = new THREE.SphereGeometry(1, 32, 32);
+        
+        // Create main island
+        const mainIsland = new THREE.Group();
+        
+        // Base
+        const baseGeometry = new THREE.SphereGeometry(2, 32, 32, 0, Math.PI * 2, 0, Math.PI * 0.5);
+        const baseMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0x3a1c71,
+            flatShading: true
+        });
+        const base = new THREE.Mesh(baseGeometry, baseMaterial);
+        base.rotation.x = Math.PI;
+        mainIsland.add(base);
+        
+        // Top
+        const topGeometry = new THREE.ConeGeometry(1.5, 1, 32);
+        const topMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0x5e2a9e,
+            flatShading: true
+        });
+        const top = new THREE.Mesh(topGeometry, topMaterial);
+        top.position.y = 0.5;
+        mainIsland.add(top);
+        
+        // Crystal
+        const crystalGeometry = new THREE.ConeGeometry(0.5, 1.5, 4);
+        const crystalMaterial = new THREE.MeshPhongMaterial({ 
+            color: 0x00ffff,
+            emissive: 0x00aaff,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.8,
+            shininess: 100
+        });
+        const crystal = new THREE.Mesh(crystalGeometry, crystalMaterial);
+        crystal.position.y = 1.5;
+        crystal.rotation.y = Math.PI / 4;
+        mainIsland.add(crystal);
+        
+        mainIsland.position.set(0, 0, -20);
+        scene.add(mainIsland);
+        islands.push(mainIsland);
+
+        // Create smaller islands
+        for (let i = 0; i < 5; i++) {
+            const island = new THREE.Group();
+            
+            // Base
+            const size = 0.5 + Math.random() * 0.5;
+            const smallBaseGeometry = new THREE.SphereGeometry(size, 32, 32, 0, Math.PI * 2, 0, Math.PI * 0.5);
+            const smallBase = new THREE.Mesh(smallBaseGeometry, baseMaterial);
+            smallBase.rotation.x = Math.PI;
+            island.add(smallBase);
+            
+            // Top
+            const smallTopGeometry = new THREE.ConeGeometry(size * 0.8, size, 32);
+            const smallTop = new THREE.Mesh(smallTopGeometry, topMaterial);
+            smallTop.position.y = size * 0.3;
+            island.add(smallTop);
+            
+            // Position randomly around main island
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 5 + Math.random() * 10;
+            island.position.set(
+                Math.cos(angle) * distance,
+                -2 + Math.random() * 4,
+                -20 + Math.sin(angle) * distance
+            );
+            
+            scene.add(island);
+            islands.push(island);
+        }
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(1, 1, 1);
+        scene.add(directionalLight);
+
+        const pointLight = new THREE.PointLight(0x00aaff, 1, 50);
+        pointLight.position.set(0, 2, -18);
+        scene.add(pointLight);
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Rotate islands
+            islands.forEach((island, index) => {
+                island.rotation.y += 0.002 * (index + 1);
+                if (index > 0) {
+                    // Float up and down
+                    island.position.y = -2 + Math.sin(Date.now() * 0.001 * (index + 1)) * 2;
+                }
+            });
+            
+            // Twinkle stars
+            starMaterial.opacity = 0.7 + Math.sin(Date.now() * 0.001) * 0.3;
+            
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Command search functionality
+        const commandSearch = document.querySelector('.command-search input');
+        const commandRows = document.querySelectorAll('.commands-table tbody tr');
+        
+        commandSearch.addEventListener('input', () => {
+            const searchTerm = commandSearch.value.toLowerCase();
+            
+            commandRows.forEach(row => {
+                const commandName = row.querySelector('.command-name').textContent.toLowerCase();
+                const commandDesc = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                
+                if (commandName.includes(searchTerm) || commandDesc.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Parallax effect
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = -(e.clientY / window.innerHeight - 0.5) * 2;
+            
+            camera.position.x = x * 2;
+            camera.position.y = y * 2;
+            camera.lookAt(0, 0, -20);
+        });
+    </script>
+</body>
+</html>
